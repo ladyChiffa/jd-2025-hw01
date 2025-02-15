@@ -14,8 +14,8 @@ public class Company {
     }
 
     public void shiftMoney(int amount) {
-        if (amount >= 0 ) debit += amount;
-        else credit += Math.abs(amount);
+        if (amount >= 0 ) { debit += amount; }
+        else { credit += Math.abs(amount); }
     }
 
     public void setTaxSystem ( TaxSystem system ) {
@@ -32,7 +32,8 @@ public class Company {
     public int applyDeals(Deal deals[]){
         int diff = 0;
         for (int i = 0; i < deals.length; i++){
-            shiftMoney(deals[i].debitChange - deals[i].creditChange);
+            shiftMoney(deals[i].debitChange);
+            shiftMoney(-deals[i].creditChange);
             diff += deals[i].debitChange - deals[i].creditChange;
         }
         payTaxes();
